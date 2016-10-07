@@ -1,4 +1,4 @@
-# OpenVPN setup on Linux
+# OpenVPN server setup on Linux and client on Windows 7 uses openvpngui
 
 ## Install openvpn and easy-rsa
 ```bash
@@ -6,8 +6,20 @@ $ apt-get update
 $ apt-get install openvpn easy-rsa
 ```
 
-## 
+## Setup configuration
+```bash
+$ cd /etc/openpvn/easy-rsa
 
+$ ./clean-all
+
+$ ./build-ca
+
+$ ./build-key-server vpn-server
+
+$ ./build-key desktop-client
+
+$ ./build-dh # may take long time, please wait.
+```
 
 ## Create server.conf
 ```bash
@@ -34,6 +46,18 @@ persist-key
 persist-tun
 status /var/log/openvpn.log
 verb 3
-```txt
+```
 
+## Restart openvpn server
+```bash
+service openvpn restart
+```
 
+## Check the service is on
+1.Check the process
+2.1194 port on the netstat list.
+```bash
+$ ps aux | grep openvpn
+
+$ netstat -tunlp | grep 1194
+```
