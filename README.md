@@ -1,6 +1,6 @@
 # OpenVPN server setup on Linux and client on Windows 7 uses openvpngui
 
-## Install openvpn and easy-rsa
+## Install openvpn server and easy-rsa
 ```bash
 $ apt-get update
 $ apt-get install openvpn easy-rsa
@@ -53,7 +53,7 @@ verb 3
 service openvpn restart
 ```
 
-## Check the service is on
+## Check service
 1.Check the process
 2.1194 port on the netstat list.
 ```bash
@@ -61,3 +61,41 @@ $ ps aux | grep openvpn
 
 $ netstat -tunlp | grep 1194
 ```
+
+## Install OpenVPNGUI on windows7
+
+### Download and install
+https://openvpn.net/index.php/open-source/downloads.html
+
+### Configuration file
+Add a new configuration file at C:\Program Files\OpenVPN\config\client.ovpn
+
+```txt
+## remote.ovpn ##
+client
+dev tap
+proto udp
+remote 192.168.10.10 1194 # Your vpn server's domain or ip address
+resolv-retry infinite
+nobind
+persist-key
+persist-tun
+ca ca.crt
+cert desktop-client.crt
+key desktop-client.key
+comp-lzo
+verb 3
+route-method exe
+route-delay 2
+```
+
+### Copy certificate files from openvpn server
+Copy these files from openvpn server then put at C:\Program Files\OpenVPN\config\
+* desktop-client.crt
+* desktop-client.key
+* ca.crt
+
+### Startup OpenVPNGUI
+
+
+
