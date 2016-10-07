@@ -71,7 +71,7 @@ https://openvpn.net/index.php/open-source/downloads.html
 Add a new configuration file at C:\Program Files\OpenVPN\config\client.ovpn
 
 ```txt
-## remote.ovpn ##
+## client.ovpn ##
 client
 dev tap
 proto udp
