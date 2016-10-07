@@ -96,6 +96,6 @@ Copy these files from openvpn server then put at C:\Program Files\OpenVPN\config
 * ca.crt
 
 ### Startup OpenVPNGUI
-
+![openvpn_gui_location.PNG](https://github.com/pinatclimax/install_openvpn/blob/master/openvpn_gui_location.PNG)
 
 
